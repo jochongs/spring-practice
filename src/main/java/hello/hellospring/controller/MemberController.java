@@ -17,8 +17,4 @@ public class MemberController {
         this.memberService = memberService;
     }
 
-    @PostMapping("")
-    public void signUp() {
-
-    }
 }
