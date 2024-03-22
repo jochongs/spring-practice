@@ -1,14 +1,24 @@
 package hello.hellospring.service;
 
 import hello.hellospring.domain.Member;
+import hello.hellospring.repository.MemberRepository;
+import hello.hellospring.repository.MemoryMemberRepository;
 import org.assertj.core.api.Assertions;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.Optional;
 
 class MemberServiceTest {
 
-    MemberService memberService = new MemberService();
+    MemberService memberService;
+    MemberRepository memberRepository;
+
+    @AfterEach
+    public void afterEach() {
+        memberRepository = new MemoryMemberRepository();
+        memberService = new MemberService(memberRepository);
+    }
 
     public void beforeEach() {}
 
@@ -16,7 +26,7 @@ class MemberServiceTest {
     void join() {
         // given
         Member member = new Member();
-        member.setName("hello");
+        member.setName("spring");
 
         // when
         Long saveId = memberService.join(member);
@@ -35,7 +45,8 @@ class MemberServiceTest {
         Member member2 = new Member();
         member2.setName("spring");
 
-        memberService
+        memberService.join(member1);
+        org.junit.jupiter.api.Assertions.assertThrows(IllegalStateException.class, () -> memberService.join(member2));
         //when
         /*memberService.join(member1);
         try {
