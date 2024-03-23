@@ -24,7 +24,7 @@ class MemberServiceIngegrationTest {
     void join() {
         // given
         Member member = new Member();
-        member.setName("spring");
+        member.setName("firstName");
 
         // when
         Long saveId = memberService.join(member);
@@ -38,10 +38,10 @@ class MemberServiceIngegrationTest {
     public void join_member_duplicate() {
         //given
         Member member1 = new Member();
-        member1.setName("spring");
+        member1.setName("firstName");
 
         Member member2 = new Member();
-        member2.setName("spring");
+        member2.setName("firstName");
 
         memberService.join(member1);
         org.junit.jupiter.api.Assertions.assertThrows(IllegalStateException.class, () -> memberService.join(member2));
