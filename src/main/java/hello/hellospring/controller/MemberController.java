@@ -45,4 +45,10 @@ public class MemberController {
         model.addAttribute("members", members);
         return "members/memberList";
     }
+
+    @GetMapping("/api/members")
+    @ResponseBody
+    public List<Member> memberListAPI() {
+        return memberService.findMembers();
+    }
 }
