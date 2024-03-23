@@ -8,7 +8,7 @@ public class Member {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "username")
+    @Column(name = "name")
     private String name;
 
     public Long getId() {
