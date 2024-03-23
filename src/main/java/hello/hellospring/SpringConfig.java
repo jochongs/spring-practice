@@ -12,11 +12,11 @@ import javax.sql.DataSource;
 @Configuration
 public class SpringConfig {
 
-    private final EntityManager em;
+    private final MemberRepository memberRepository;
 
     @Autowired
-    public SpringConfig(EntityManager em) {
-        this.em = em;
+    public SpringConfig(MemberRepository memberRepository) {
+        this.memberRepository = memberRepository;
     }
 
     // Java 코드로 직접 설정
@@ -24,14 +24,6 @@ public class SpringConfig {
     // 정형화 되지 않거나, 상황에 따라 구현 클래스를 변경해야 하면 설정을 통해 스프링 빈 사용
     @Bean
     public MemberService memberService() {
-        return new MemberService(memberRepository());
-    }
-
-    @Bean
-    public MemberRepository memberRepository() {
-        return new JpaMemberRepository(em);
-        //return new JdbcTemplateMemberRepository(dataSource);
-        //return new JdbcMemberRepository(dataSource);
-        //return new MemoryMemberRepository();
+        return new MemberService(memberRepository);
     }
 }
