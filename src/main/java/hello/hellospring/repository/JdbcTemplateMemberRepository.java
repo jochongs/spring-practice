@@ -59,7 +59,6 @@ public class JdbcTemplateMemberRepository implements MemberRepository {
         return jdbcTemplate.query("SELECT * FROM member", memberRowMapper());
     }
 
-    @Override
     public void clearStore() {
 
     }

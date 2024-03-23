@@ -40,7 +40,6 @@ public class JpaMemberRepository implements MemberRepository {
         return em.createQuery("SELECT m FROM Member m", Member.class).getResultList();
     }
 
-    @Override
     public void clearStore() {
 
     }

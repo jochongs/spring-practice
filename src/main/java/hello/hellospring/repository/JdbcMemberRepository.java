@@ -133,7 +133,6 @@ public class JdbcMemberRepository implements MemberRepository{
         }
     }
 
-    @Override
     public void clearStore() {
 
     }
