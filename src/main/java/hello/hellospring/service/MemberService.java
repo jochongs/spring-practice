@@ -22,10 +22,18 @@ public class MemberService {
      * @return
      */
     public Long join(Member member) {
-        memberDuplicateCheck(member);
+        long start = System.currentTimeMillis();
+        try {
+            memberDuplicateCheck(member);
 
-        memberRepository.save(member);
-        return member.getId();
+            memberRepository.save(member);
+
+            return member.getId();
+        } finally {
+            long finish = System.currentTimeMillis();
+            long timeMs = finish - start;
+            System.out.println("Join = " + timeMs + "ms");
+        }
     }
 
     private void memberDuplicateCheck(Member member) {
@@ -43,3 +51,4 @@ public class MemberService {
         return memberRepository.findById(memberId);
     }
 }
+
